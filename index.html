@@ -3,128 +3,666 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maria Patentalaki</title>
+  <title>Maria Patentalaki | Bioinformatics & Translational Research</title>
+  <meta name="description" content="Maria Patentalaki - Bioinformatics, Computational Biology and Translational Research." />
 
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
-      color: #222;
+      padding: 0;
     }
 
-    .container {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 80px 24px;
+    html {
+      scroll-behavior: smooth;
     }
 
-    .card {
-      background: white;
-      padding: 48px;
-      border-radius: 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #07111f;
+      color: #eef6ff;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(56,189,248,.22), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(34,197,94,.16), transparent 28%),
+        radial-gradient(circle at 50% 90%, rgba(99,102,241,.18), transparent 34%);
+      z-index: -2;
     }
 
-    .subtitle {
-      font-size: 20px;
-      color: #666;
-      margin-bottom: 32px;
-    }
-
-    h2 {
-      margin-top: 32px;
-      font-size: 22px;
-    }
-
-    p {
-      font-size: 17px;
-      line-height: 1.7;
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 42px 42px;
+      z-index: -1;
+      mask-image: linear-gradient(to bottom, black, transparent);
     }
 
     a {
-      color: #005fcc;
+      color: inherit;
       text-decoration: none;
-      font-weight: bold;
     }
 
-    a:hover {
-      text-decoration: underline;
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(7, 17, 31, .78);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
 
-    .contact {
-      margin-top: 32px;
-      padding: 18px;
-      background: #f0f4ff;
+    .nav {
+      max-width: 1180px;
+      margin: auto;
+      padding: 18px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: .4px;
+    }
+
+    .brand span {
+      color: #38bdf8;
+    }
+
+    nav a {
+      margin-left: 24px;
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+
+    nav a:hover {
+      color: #38bdf8;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: auto;
+      padding: 90px 22px;
+    }
+
+    .hero {
+      min-height: 86vh;
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .pill {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 14px;
+      border: 1px solid rgba(56,189,248,.35);
+      background: rgba(56,189,248,.09);
+      color: #7dd3fc;
+      border-radius: 999px;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: clamp(44px, 7vw, 82px);
+      line-height: 1;
+      letter-spacing: -2.5px;
+      margin-bottom: 26px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, #38bdf8, #22c55e, #a78bfa);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      max-width: 720px;
+      font-size: 20px;
+      color: #cbd5e1;
+      margin-bottom: 34px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      padding: 14px 22px;
       border-radius: 12px;
+      font-weight: 800;
+      display: inline-block;
     }
 
-    footer {
-      margin-top: 28px;
-      text-align: center;
-      color: #888;
+    .btn-primary {
+      background: #38bdf8;
+      color: #06101f;
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,.18);
+      color: #e2e8f0;
+      background: rgba(255,255,255,.05);
+    }
+
+    .visual {
+      position: relative;
+      min-height: 420px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 32px;
+      background: linear-gradient(145deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+      box-shadow: 0 30px 90px rgba(0,0,0,.35);
+      overflow: hidden;
+    }
+
+    .dna {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(56,189,248,.28), transparent 18%),
+        radial-gradient(circle at 30% 70%, rgba(34,197,94,.22), transparent 22%);
+      animation: pulse 5s ease-in-out infinite alternate;
+    }
+
+    .node {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #38bdf8;
+      box-shadow: 0 0 30px #38bdf8;
+      animation: float 7s ease-in-out infinite;
+    }
+
+    .n1 { top: 18%; left: 25%; }
+    .n2 { top: 35%; left: 72%; animation-delay: 1s; }
+    .n3 { top: 62%; left: 45%; animation-delay: 2s; }
+    .n4 { top: 78%; left: 18%; animation-delay: 3s; }
+    .n5 { top: 72%; left: 80%; animation-delay: 4s; }
+
+    .visual-text {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      right: 30px;
+      background: rgba(7,17,31,.72);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 20px;
+      padding: 24px;
+      backdrop-filter: blur(14px);
+    }
+
+    .visual-text h3 {
+      color: #7dd3fc;
+      margin-bottom: 8px;
+    }
+
+    .visual-text p {
+      color: #cbd5e1;
+    }
+
+    section {
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 40px;
+    }
+
+    .section-head h2 {
+      font-size: 42px;
+      letter-spacing: -1px;
+      margin-bottom: 14px;
+    }
+
+    .section-head p {
+      color: #cbd5e1;
+      font-size: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      padding: 28px;
+      border-radius: 24px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      transition: .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(56,189,248,.45);
+      background: rgba(255,255,255,.09);
+    }
+
+    .icon {
+      font-size: 30px;
+      margin-bottom: 14px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #f8fafc;
+    }
+
+    .card p {
+      color: #cbd5e1;
+    }
+
+    .about-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .panel {
+      padding: 34px;
+      border-radius: 28px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+
+    .panel p {
+      color: #cbd5e1;
+      margin-bottom: 16px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(56,189,248,.1);
+      border: 1px solid rgba(56,189,248,.22);
+      color: #bae6fd;
       font-size: 14px;
     }
 
-    @media (max-width: 600px) {
+    .project {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 220px;
+    }
+
+    .project small {
+      color: #7dd3fc;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .skills {
+      display: grid;
+      gap: 18px;
+    }
+
+    .skill {
+      display: grid;
+      gap: 8px;
+    }
+
+    .skill-top {
+      display: flex;
+      justify-content: space-between;
+      color: #e2e8f0;
+      font-weight: 700;
+    }
+
+    .bar {
+      height: 10px;
+      background: rgba(255,255,255,.1);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, #38bdf8, #22c55e);
+      border-radius: inherit;
+    }
+
+    .contact {
+      background: linear-gradient(135deg, rgba(56,189,248,.16), rgba(34,197,94,.12));
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 32px;
+      padding: 46px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .contact h2 {
+      font-size: 38px;
+      margin-bottom: 8px;
+    }
+
+    .contact p {
+      color: #cbd5e1;
+    }
+
+    footer {
+      padding: 35px 22px;
+      text-align: center;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-22px) scale(1.25); }
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); opacity: .75; }
+      to { transform: scale(1.08); opacity: 1; }
+    }
+
+    @media (max-width: 850px) {
+      nav {
+        display: none;
+      }
+
+      .hero,
+      .about-box {
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
       .container {
-        padding: 40px 16px;
+        padding: 70px 20px;
       }
 
-      .card {
-        padding: 30px;
-      }
-
-      h1 {
-        font-size: 34px;
+      .visual {
+        min-height: 340px;
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="container">
-    <section class="card">
-      <h1>Maria Patentalaki</h1>
-      <p class="subtitle">Personal Website</p>
+  <header>
+    <div class="nav">
+      <div class="brand">Maria <span>Patentalaki</span></div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#projects">Projects</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-      <p>
-        Hello! I’m Maria Patentalaki. Welcome to my personal website.
-        This page includes a short introduction about me, what I do,
-        and how you can contact me.
-      </p>
-
-      <h2>About Me</h2>
-      <p>
-        I am interested in learning, growing professionally, and developing
-        my skills through new opportunities and projects.
-      </p>
-
-      <h2>What I Do</h2>
-      <p>
-        Here you can write a few lines about your studies, work, experience,
-        interests, or services.
-      </p>
-
-      <div class="contact">
-        <h2>Contact</h2>
-        <p>
-          You can contact me by email at
-          <a href="mailto:mariapatentalaki99@gmail.com">
-            mariapatentalaki99@gmail.com
-          </a>.
+  <main>
+    <section class="container hero">
+      <div>
+        <div class="pill">Computational Biology · Bioinformatics · Translational Research</div>
+        <h1>Turning biomedical data into <span class="gradient">meaningful discovery.</span></h1>
+        <p class="lead">
+          I focus on bioinformatics, computational biology, and translational research,
+          using data-driven approaches to better understand disease mechanisms,
+          biomarkers, and precision medicine.
         </p>
+        <div class="buttons">
+          <a class="btn btn-primary" href="#research">Explore Research</a>
+          <a class="btn btn-secondary" href="mailto:patentalaki@gmail.com">Contact Me</a>
+        </div>
+      </div>
+
+      <div class="visual">
+        <div class="dna"></div>
+        <div class="node n1"></div>
+        <div class="node n2"></div>
+        <div class="node n3"></div>
+        <div class="node n4"></div>
+        <div class="node n5"></div>
+        <div class="visual-text">
+          <h3>Bioinformatics Research</h3>
+          <p>Genomics · Multi-omics · AI · Translational Medicine</p>
+        </div>
       </div>
     </section>
 
-    <footer>
-      © 2026 Maria Patentalaki
-    </footer>
+    <section id="about">
+      <div class="container reveal">
+        <div class="section-head">
+          <h2>About</h2>
+          <p>
+            A modern research profile focused on computational approaches for biomedical discovery.
+          </p>
+        </div>
+
+        <div class="about-box">
+          <div class="panel">
+            <p>
+              My work is centered around the integration of biological data, clinical insight,
+              and computational methods. I am interested in how large-scale biomedical datasets
+              can support better disease understanding and translational applications.
+            </p>
+            <p>
+              This website presents my research interests, technical expertise, and scientific focus.
+            </p>
+          </div>
+
+          <div class="panel">
+            <h3>Scientific Focus</h3>
+            <div class="tags">
+              <span class="tag">Bioinformatics</span>
+              <span class="tag">Computational Biology</span>
+              <span class="tag">Translational Medicine</span>
+              <span class="tag">Genomics</span>
+              <span class="tag">Multi-omics</span>
+              <span class="tag">Machine Learning</span>
+              <span class="tag">Precision Medicine</span>
+              <span class="tag">Biomedical Data Science</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="container reveal">
+        <div class="section-head">
+          <h2>Research Areas</h2>
+          <p>
+            Key areas of interest across computational biology, molecular data analysis,
+            and translational biomedical research.
+          </p>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <div class="icon">🧬</div>
+            <h3>Bioinformatics</h3>
+            <p>Analysis of genomic, transcriptomic, and molecular datasets.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">🔬</div>
+            <h3>Translational Research</h3>
+            <p>Connecting computational findings with clinically relevant questions.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">📊</div>
+            <h3>Multi-omics Analysis</h3>
+            <p>Integrating diverse biological datasets to study disease complexity.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">🧠</div>
+            <h3>AI in Biomedicine</h3>
+            <p>Machine learning approaches for prediction, classification, and discovery.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">🩺</div>
+            <h3>Precision Medicine</h3>
+            <p>Biomarker discovery and patient stratification through data analysis.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">⚙️</div>
+            <h3>Reproducible Pipelines</h3>
+            <p>Clear, scalable, and reproducible computational research workflows.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container reveal">
+        <div class="section-head">
+          <h2>Selected Project Themes</h2>
+          <p>
+            Example research directions suitable for a bioinformatics and translational science profile.
+          </p>
+        </div>
+
+        <div class="grid">
+          <div class="card project">
+            <div>
+              <small>Project Theme</small>
+              <h3>Cancer Biomarker Discovery</h3>
+              <p>Using omics datasets to identify molecular patterns with potential clinical relevance.</p>
+            </div>
+          </div>
+
+          <div class="card project">
+            <div>
+              <small>Project Theme</small>
+              <h3>AI for Clinical Prediction</h3>
+              <p>Exploring predictive models for diagnosis, prognosis, and patient stratification.</p>
+            </div>
+          </div>
+
+          <div class="card project">
+            <div>
+              <small>Project Theme</small>
+              <h3>Single-cell & RNA-seq Analysis</h3>
+              <p>Studying expression profiles, pathways, and cell-type-specific biological signals.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="expertise">
+      <div class="container reveal">
+        <div class="section-head">
+          <h2>Expertise</h2>
+          <p>
+            Technical and scientific skills related to computational biomedical research.
+          </p>
+        </div>
+
+        <div class="panel skills">
+          <div class="skill">
+            <div class="skill-top"><span>Bioinformatics</span><span>95%</span></div>
+            <div class="bar"><span style="width:95%"></span></div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-top"><span>Translational Medicine</span><span>90%</span></div>
+            <div class="bar"><span style="width:90%"></span></div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-top"><span>Machine Learning</span><span>88%</span></div>
+            <div class="bar"><span style="width:88%"></span></div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-top"><span>NGS / Omics Analysis</span><span>92%</span></div>
+            <div class="bar"><span style="width:92%"></span></div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-top"><span>Python / R / Data Science</span><span>90%</span></div>
+            <div class="bar"><span style="width:90%"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container reveal">
+        <div class="contact">
+          <div>
+            <h2>Contact</h2>
+            <p>For research, collaboration, or professional communication.</p>
+          </div>
+          <a class="btn btn-primary" href="mailto:patentalaki@gmail.com">
+            patentalaki@gmail.com
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    © 2026 Maria Patentalaki · Bioinformatics & Translational Research
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
